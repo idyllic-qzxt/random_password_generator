@@ -62,21 +62,25 @@ def main():
         print("Select your choice (Input '1' or '2')")
         print("(1) Password")
         print("(2) Passphrase")
-        choice_input = int(input("Generate password or passphrase?: "))
+        choice_input = input("Generate password or passphrase?: ")
 
-        if 1 <= choice_input <= 2:
-            if choice_input == 1:
-                user_input = input("Enter a password length: ")
-                if user_input.isdigit() and 8 <= int(user_input) <= 16:
-                    user_input = int(user_input)
-                    print(f"Password: {generate_password(user_input)}")
-                    valid_flag = 1
+        if choice_input.isdigit():
+            if 1 <= int(choice_input) <= 2:
+                if choice_input == 1:
+                    user_input = input("Enter a password length: ")
+                    if user_input.isdigit() and 8 <= int(user_input) <= 16:
+                        user_input = int(user_input)
+                        print(f"Password: {generate_password(user_input)}")
+                        valid_flag = 1
+                    else:
+                        print("Input an integer for your password length. (8-16)")
+                        continue
                 else:
-                    print("Input an integer for your password length. (8-16)")
-                    continue
+                    print(f"Passphrase: {generate_passphrase()}")
+                    valid_flag = 1
             else:
-                print(f"Passphrase: {generate_passphrase()}")
-                valid_flag = 1
+                print("Enter 1 or 2.")
+                continue
         else:
             print("Enter 1 or 2.")
             continue
